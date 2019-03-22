@@ -1,0 +1,16 @@
+<p> {{ directory_name }}</p>
+<ul>
+    {% for dir, path in directory_directories %}
+        <a href="/dir/browse/{{ path }}" >{{ dir }}</a> <br/>
+    {% endfor %}
+</ul>
+<ul>
+    {% for file, path, content, type in directory_files %}
+        {% if content != '' %}
+            {{ file }} : click <a href="/dir/browse/{{ path }}">here</a> to see {{ content }} or <a href="/dir/download/{{ path }}">download</a> it.<br/>
+        {% else %}
+            {{ file }} : <a href="/dir/download/{{ path }}">download</a> content.<br/>
+        {% endif %}
+
+    {% endfor %}
+</ul>

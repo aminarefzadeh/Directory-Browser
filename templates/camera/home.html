@@ -1,0 +1,8 @@
+<p> there is {{ camera_list|length }} camera available </p>
+<ul>
+    {% for cam_id in camera_list %}
+        <li>
+        camera {{ cam_id }} : <a href="/live/cam/{{ cam_id }}/">click here</a>
+        </li>
+    {% endfor %}
+</ul>

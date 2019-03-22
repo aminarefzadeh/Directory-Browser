@@ -1,0 +1,14 @@
+<p>{{ filename }}</p>
+{% if content == "image" %}
+    <img src="/dir/stream/{{ link }}" alt="{{ filename }}"/>
+{% elif content == "video" %}
+    <video width="640" height="480" controls autoplay>
+        <source src="/dir/stream/{{ link }}" type="{{ type }}"/>
+    </video>
+{% elif content == "audio" %}
+    <audio controls autoplay>
+        <source src="/dir/stream/{{ link }}" type="{{ type }}"/>
+    </audio>
+{% else %}
+    this content cannot been showd
+{% endif %}
