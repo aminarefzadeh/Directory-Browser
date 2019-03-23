@@ -15,11 +15,10 @@ from django.core.exceptions import PermissionDenied
 
 def check_access(request):
     """Returns true if user has access to the directory"""
-    request.user
     if request.user.is_anonymous:
         return False
     else:
-        return request.user.has_perm('app.readdir_customuser')
+        return request.user.has_perm('app.readdir')
 
 
 def _list_directory(request, directory):
