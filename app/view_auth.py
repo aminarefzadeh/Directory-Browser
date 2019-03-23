@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.contrib.auth.forms import UserCreationForm
+from app.forms import UserCreationForm
+from app.models import CustomUser
 # Create your views here.
 
 from django.template.loader import get_template
@@ -11,9 +12,14 @@ from django.http import HttpResponse
 def register(request):
     if request.method == 'POST':
         uf = UserCreationForm(request.POST, prefix='user')
-        if uf.is_valid() :
-            user = uf.save()
-            return HttpResponseRedirect("/")
+        try:
+            if uf.is_valid():
+                user = uf.save()
+                user.check_password('amin1234')
+                return HttpResponseRedirect("/")
+        except:
+            pass
+        return HttpResponseRedirect("/auth/register")
     else:
         template = get_template('registration/register.html')
         uf = UserCreationForm(prefix='user')
